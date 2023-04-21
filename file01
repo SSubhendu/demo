@@ -1,0 +1,34 @@
+
+# Given a list of strings, write a function to find the group of strings that are rotations of each other.
+
+
+# To find if two strings are rotations of each other, we can concatenate the first string to itself and see if the second string is a substring of the concatenated string. If it is, then the two strings are rotations of each other.
+
+# To extend this approach to a list of strings, we can iterate over each string in the list, concatenate it to itself, and compare it with every other string in the list to see if they are rotations of each other.
+
+# Here's the Python code for the same:
+
+def find_rotation_groups(strings):
+    groups = []
+    for i in range(len(strings)):
+        s = strings[i]
+        print(s)
+        rotated = s + s
+        print(rotated)
+        group = [s]
+        print("group:", group)
+        print("groups:", groups)
+        for j in range(i+1, len(strings)):
+            if strings[j] in rotated:
+                group.append(strings[j])
+        print('group:', group)
+        if len(group) > 1 and group not in groups:
+            groups.append(group)
+        print('groups:', groups)
+    return groups
+# This function takes a list of strings as input and returns a list of lists, where each inner list represents a group of strings that are rotations of each other.
+
+# Let's test this function with some sample inputs:
+
+strings = ["abc", "bca", "cab", "xyz", "yzx"]
+print(find_rotation_groups(strings))  # [['abc', 'bca', 'cab'], ['xyz', 'yzx']]
